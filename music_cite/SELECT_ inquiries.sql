@@ -16,7 +16,7 @@ WHERE track_length >= 210;
 -- Сборники выходившие с 2018 по 2020 год включительно
 SELECT collection_name
 FROM collection
-WHERE '2018-01-01' <= collection_release_year AND collection_release_year <= '2020.12.31';
+WHERE collection_release_year BETWEEN '2018-01-01' AND '2020-12-31';
 
 
 -- Артисты, имена которых состоят из 1 слова
