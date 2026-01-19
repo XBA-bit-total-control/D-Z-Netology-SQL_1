@@ -68,12 +68,10 @@ ORDER BY cag.genre_id;
 
 
 -- Количество треков, которые вошли в альбомы 2019-2020 годов
-SELECT album_name, COUNT(t.album_id) AS number_of_tracks
+SELECT COUNT(t.album_id) AS number_of_tracks
 FROM track AS t
 JOIN album AS a ON a.album_id = t.album_id
-WHERE '2019-01-01' <= a.album_release_year AND a.album_release_year <= '2020.12.31'
-GROUP BY a.album_name
-ORDER BY number_of_tracks;
+WHERE '2019-01-01' <= a.album_release_year AND a.album_release_year <= '2020-12-31';
 
 
 -- Средняя продолжительность треков в разных альбомах
