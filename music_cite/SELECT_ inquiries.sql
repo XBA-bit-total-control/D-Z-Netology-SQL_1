@@ -83,11 +83,13 @@ ORDER BY average_track_length DESC;
 
 
 -- Артисты, которые не выпустили альбомы в 2020 году
-SELECT DISTINCT CONCAT(name, ' ', surname) AS artist_who_was_on_vacation_in_2019
-FROM performer p
-JOIN album AS a ON a.album_id = p.performer_id
-JOIN track AS t ON a.album_id = t.album_id
-WHERE a.album_release_year::VARCHAR NOT LIKE('2020%');
+SELECT CONCAT(name, ' ', surname) AS artist
+FROM performer AS p
+WHERE CONCAT(name, ' ', surname) NOT IN (SELECT CONCAT(name, ' ', surname)
+			                             FROM performer p
+			                             JOIN con_artist_album AS caa ON caa.performer_id  = p.performer_id
+			                             JOIN album AS a ON a.album_id = caa.album_id
+			                             WHERE a.album_release_year BETWEEN '2020-01-01' AND '2020-12-31');
 
 
 -- Сборники в которых участвовал солист группы 7Б Иван Демьян
