@@ -71,7 +71,7 @@ ORDER BY cag.genre_id;
 SELECT COUNT(t.album_id) AS number_of_tracks
 FROM track AS t
 JOIN album AS a ON a.album_id = t.album_id
-WHERE '2019-01-01' <= a.album_release_year AND a.album_release_year <= '2020-12-31';
+WHERE a.album_release_year BETWEEN '2019-01-01' AND '2020-12-31';
 
 
 -- Средняя продолжительность треков в разных альбомах
