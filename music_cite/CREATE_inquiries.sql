@@ -40,9 +40,9 @@ CONSTRAINT pk PRIMARY KEY (album_id, performer_id)
 -- Создание таблицы треков
 CREATE TABLE IF NOT EXISTS Track (
 track_id SERIAL PRIMARY KEY,
-track_name INTEGER NOT NULL,
-track_length VARCHAR(8),
-album_id INTEGER NOT NULL REFERENCES Album(album_id)
+track_name VARCHAR(175) NOT NULL,
+album_id INTEGER NOT NULL REFERENCES Album(album_id),
+track_length INTEGER DEFAULT 0
 );
 
 
