@@ -1,7 +1,3 @@
--- Решено было добавить колонку фамилий
-ALTER TABLE performer ADD COLUMN surname VARCHAR(125)
-
-
 -- Заполнение таблицы артистов
 INSERT INTO performer (name, surname)
 VALUES ('Валерий', 'Кипелов'),
@@ -21,7 +17,7 @@ VALUES ('рок'),
 
 
 -- Создание связей между артистами и жанрами
-INSERT INTO con_artistgenre (performer_id, genre_id)
+INSERT INTO con_artist_genre (performer_id, genre_id)
 VALUES (1, 2),
 	   (1, 4),
 	   (2, 1),
@@ -32,7 +28,7 @@ VALUES (1, 2),
 
 
 -- Заполнение таблицы альбомов
-INSERT INTO album (album_name, album_realese_year)
+INSERT INTO album (album_name, album_release_year)
 VALUES ('Реки Времен', '2005-10-06'),
 	   ('Атмосфера','2019-02-12'),
 	   ('Немного огня', '1994-01-01'),
@@ -42,7 +38,7 @@ VALUES ('Реки Времен', '2005-10-06'),
 
 
 -- Создание связей между артистами и альбомами
-INSERT INTO con_artistalbum (album_id, performer_id)
+INSERT INTO con_artist_album (album_id, performer_id)
 VALUES (1, 1),
 	   (2, 6),
 	   (3, 2),
@@ -51,13 +47,8 @@ VALUES (1, 1),
 	   (6, 6);
 
 
--- Замена типа данных столбца его пересозданием
-ALTER TABLE track DROP COLUMN track_legth;
-ALTER TABLE track ADD COLUMN track_legth INTEGER;
-
-
 -- Заполнение таблицы треков
-INSERT INTO track (track_name, album_id, track_legth)
+INSERT INTO track (track_name, album_id, track_length)
 VALUES ('Городу на Неве', 6, 284),
 	   ('Самый звонкий крик — тишина', 3, 364),
 	   ('Дыханье тьмы', 1, 307),
@@ -76,9 +67,8 @@ VALUES ('Городу на Неве', 6, 284),
 	   ('Чтобы был короткий трек', 1, 61);
 
 
-
 -- Заполнение таблицы сборников
-INSERT INTO collection (collection_name, collection_realese_year)
+INSERT INTO collection (collection_name, collection_release_year)
 VALUES ('Пикник 45', '2025-01-01'),
 	   ('Я умираю, но не сдаюсь!', '2020-01-01'),
 	   ('Счастливой вам дороги! Лучшие шоферские песни. Выпуск 8 — 2010 г.', '2010-01-01'),
@@ -86,7 +76,7 @@ VALUES ('Пикник 45', '2025-01-01'),
 
 
 -- Создание связей между сборниками и треками
-INSERT INTO con_collectiontrack (collection_id, track_id)
+INSERT INTO con_collection_track (collection_id, track_id)
 VALUES (1, 2),
 	   (2, 4),
 	   (3, 10),
