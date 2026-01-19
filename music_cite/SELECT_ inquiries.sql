@@ -29,7 +29,31 @@ WHERE REGEXP_COUNT(name, ' ', 1) = 0;
 -- Треки в названии которых употребляется "мой" или "my"
 SELECT track_name
 FROM track
-WHERE track_name LIKE('%мой%') OR track_name LIKE('%my%');
+WHERE track_name ILIKE('мой %')
+OR track_name ~~* ('% мой')
+OR track_name ILIKE('% мой %')
+OR track_name ~~* ('мой')
+OR track_name ILIKE('my %')
+OR track_name ~~* ('% my')
+OR track_name ILIKE('% my %')
+OR track_name ~~* ('my');
+
+       --И так тоже получается
+--SELECT track_name
+--FROM track
+--WHERE string_to_array(lower(track_name), ' ') && ARRAY['мой','my'];
+
+       --Или так
+--SELECT track_name
+--FROM track
+--WHERE track_name ILIKE ANY(ARRAY['мой %',
+--								 '% мой',
+--								 '% мой %',
+--								 'мой',
+--								 'my %',
+--								 '% my',
+--								 '% my %',
+--								 'my']);
 
 
                                     --Задание 3
